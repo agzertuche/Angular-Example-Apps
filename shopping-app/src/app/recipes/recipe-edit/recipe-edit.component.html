@@ -78,7 +78,7 @@
                 >
                     <div
                         class="row"
-                        *ngFor="let ingredientCtrol of recipeForm.get('ingredients'); let i = index"
+                        *ngFor="let ingredientCtrol of getControls(); let i = index"
                         [formGroupName]="i"
                         style="margin-top: 10px;"
                     >
