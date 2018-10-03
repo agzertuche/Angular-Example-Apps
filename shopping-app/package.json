@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "0.0.29",
     "@angular/animations": "^5.2.11",
     "@angular/common": "^5.2.11",
     "@angular/compiler": "^5.2.11",
@@ -21,7 +22,9 @@
     "@angular/platform-browser": "^5.2.11",
     "@angular/platform-browser-dynamic": "^5.2.11",
     "@angular/router": "^5.2.11",
-    "@ngrx/store": "^6.1.0",
+    "@ngrx/router-store": "5.2.0",
+    "@ngrx/store": "^5.0.0",
+    "@ngrx/store-devtools": "5.2.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.7",
     "rxjs": "^5.5.12",

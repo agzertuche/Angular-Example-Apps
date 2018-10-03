@@ -6,6 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list-module';
 import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/app.reducers';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from './../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +20,9 @@ import { CoreModule } from './core/core.module';
     SharedModule,
     ShoppingListModule,
     CoreModule,
+    StoreModule.forRoot(reducers),
+    StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   bootstrap: [AppComponent],
 })
