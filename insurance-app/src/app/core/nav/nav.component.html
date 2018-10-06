@@ -1,0 +1,8 @@
+<nav>
+    <a
+        *ngFor="let item of navItems"
+        routerLink="/{{item}}"
+    >
+        {{item | uppercase}}
+    </a>
+</nav>

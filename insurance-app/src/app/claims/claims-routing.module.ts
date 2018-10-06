@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ClaimsComponent } from './claims.component';
 import { ClaimsListComponent } from './claims-list/claims-list.component';
 
