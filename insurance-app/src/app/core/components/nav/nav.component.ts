@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  navItems = ['home', 'claims', 'invoices', 'payments', 'polices', 'auth'];
+  navItems = ['home', 'claims', 'invoices', 'payments', 'policies', 'auth'];
 
   constructor() {}
 

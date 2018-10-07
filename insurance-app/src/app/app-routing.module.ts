@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { HomeComponent } from './core/home/home.component';
 import { NoNavLayoutComponent } from './core/layouts/no-nav-layout/no-nav-layout.component';
 import { NavLayoutComponent } from './core/layouts/nav-layout/nav-layout.component';
+import { NotFoundPageComponent } from './core/containers/not-found-page/not-found-page.component';
+import { HomePageComponent } from './core/containers/home-page/home-page.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'auth',
     component: NoNavLayoutComponent,
@@ -15,7 +16,7 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: NavLayoutComponent,
-    children: [{ path: '', component: HomeComponent, pathMatch: 'full' }],
+    children: [{ path: '', component: HomePageComponent, pathMatch: 'full' }],
   },
   {
     path: 'claims',
@@ -33,12 +34,11 @@ const appRoutes: Routes = [
     loadChildren: './payments/payments.module#PaymentsModule',
   },
   {
-    path: 'polices',
+    path: 'policies',
     component: NavLayoutComponent,
-    loadChildren: './polices/polices.module#PolicesModule',
+    loadChildren: './policies/policies.module#PoliciesModule',
   },
-  // TODO: not found page
-  // { path: '**', component: NotFoundPageComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({
