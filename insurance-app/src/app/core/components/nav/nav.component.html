@@ -1,8 +1,12 @@
-<nav>
-    <a
-        *ngFor="let item of navItems"
-        routerLink="/{{item}}"
-    >
-        {{item | uppercase}}
-    </a>
-</nav>
+<mat-sidenav
+  #sidenav
+  [opened]="open"
+  [mode]="push"
+  fixedInViewport
+  (keydown.escape)="sidenav.close()"
+  (closedStart)="closeMenu.emit()"
+>
+  <mat-nav-list>
+    <ng-content></ng-content>
+  </mat-nav-list>
+</mat-sidenav>

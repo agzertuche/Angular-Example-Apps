@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PoliciesCollectionPageComponent } from './policies-collection-page.component';
+import { PoliciesCollectionPageComponent } from './collection-page.component';
 
 describe('PoliciesCollectionPageComponent', () => {
   let component: PoliciesCollectionPageComponent;

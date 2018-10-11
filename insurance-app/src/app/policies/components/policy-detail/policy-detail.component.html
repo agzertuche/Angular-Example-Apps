@@ -1,3 +1,15 @@
-<p>
-  policy-detail works!
-</p>
+<a *ngIf="policy">
+  <div>
+    <div>
+      <div>{{ alias }}</div>
+    </div>
+    <div>
+      <p *ngIf="type">{{ type }}</p>
+      <p *ngIf="indent">{{ indent }}</p>
+    </div>
+    <div>
+      <span *ngIf="start_date">{{ start_date }}</span>
+      <span *ngIf="end_date">{{ end_date }}</span>
+    </div>
+  </div>
+</a>

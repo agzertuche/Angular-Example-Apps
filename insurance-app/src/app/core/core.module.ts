@@ -13,6 +13,10 @@ import { HomePageComponent } from './containers/home-page/home-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NavItemComponent } from './components/nav-item/nav-item.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { CoreService } from './services/core.service';
+import { HttpClientModule } from '@angular/common/http';
 
 export const COMPONENTS = [
   NavLayoutComponent,
@@ -24,6 +28,8 @@ export const COMPONENTS = [
   HeaderComponent,
   NavComponent,
   FooterComponent,
+  NavItemComponent,
+  ToolbarComponent,
 ];
 
 @NgModule({
@@ -31,10 +37,12 @@ export const COMPONENTS = [
     CommonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     MaterialModule,
   ],
   declarations: [COMPONENTS],
   exports: [AppRoutingModule, MaterialModule, COMPONENTS],
+  providers: [CoreService],
 })
 export class CoreModule {
   constructor(

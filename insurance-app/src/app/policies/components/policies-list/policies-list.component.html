@@ -1,3 +1,4 @@
-<p>
-  policies-list works!
-</p>
+<app-policy-detail
+  *ngFor="let policy of policies"
+  [policy]="policy"
+></app-policy-detail>
