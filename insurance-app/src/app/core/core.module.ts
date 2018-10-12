@@ -4,7 +4,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { NavLayoutComponent } from './layouts/nav-layout/nav-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout/simple-layout.component';
 import { NoNavLayoutComponent } from './layouts/no-nav-layout/no-nav-layout.component';
-import { throwIfAlredyLoaded } from './module-import-guard';
+import { throwIfAlredyLoaded } from './guards/module-import.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
@@ -17,6 +17,7 @@ import { NavItemComponent } from './components/nav-item/nav-item.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { CoreService } from './services/core.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 export const COMPONENTS = [
   NavLayoutComponent,
@@ -35,6 +36,7 @@ export const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,

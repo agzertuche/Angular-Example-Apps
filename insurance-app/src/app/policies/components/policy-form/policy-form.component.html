@@ -1,3 +1,26 @@
-<p>
-  policy-form works!
-</p>
+<mat-card>
+  <form (submit)="onPolicySubmit(policyForm)">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Alias" name="alias" required>
+    </mat-form-field>
+    <mat-select placeholder="Type">
+      <mat-option value="car">Car</mat-option>
+      <mat-option value="house">House</mat-option>
+      <mat-option value="other">Other</mat-option>
+    </mat-select>
+    <mat-form-field>
+      <input matInput placeholder="Indent" required name="indent">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="startdate" placeholder="Start date" name="startdate" required>
+      <mat-datepicker-toggle matSuffix [for]="startdate"></mat-datepicker-toggle>
+      <mat-datepicker #startdate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="enddate" placeholder="End date" name="enddate" required>
+      <mat-datepicker-toggle matSuffix [for]="enddate"></mat-datepicker-toggle>
+      <mat-datepicker #enddate></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="accent">SAVE</button>
+  </form>
+</mat-card>

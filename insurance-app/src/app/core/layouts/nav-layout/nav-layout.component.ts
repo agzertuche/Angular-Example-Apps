@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import * as fromRoot from '../../../reducers';
 import { select, Store } from '@ngrx/store';
-import * as LayoutActions from '../../store/layout.actions';
+import * as fromRoot from '../../store';
+import * as LayoutActions from '../../store/actions/layout.actions';
 @Component({
   selector: 'app-nav-layout',
   templateUrl: './nav-layout.component.html',

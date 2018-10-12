@@ -7,9 +7,15 @@ import { FormPageComponent } from './containers/form-page/form-page.component';
 
 const routes: Routes = [
   { path: ':id', component: PolicyDetailComponent },
-  { path: '', component: PoliciesCollectionPageComponent },
+  {
+    path: '',
+    component: PoliciesCollectionPageComponent,
+  },
   { path: 'new', component: FormPageComponent },
-  { path: 'edit/:id', component: FormPageComponent },
+  {
+    path: 'edit/:id',
+    component: FormPageComponent,
+  },
 ];
 
 @NgModule({

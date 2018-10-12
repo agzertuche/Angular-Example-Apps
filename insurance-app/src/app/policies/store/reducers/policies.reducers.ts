@@ -1,16 +1,19 @@
-import { PoliciesActionTypes, PoliciesActions } from './policies.actions';
-import { Policy } from '../model/policy';
+import {
+  PoliciesActions,
+  PoliciesActionTypes,
+} from '../actions/policies.actions';
+import { Policy } from '../../models/policy';
 
 export interface State {
   loading: boolean;
   loaded: boolean;
-  policies: Policy[];
+  entities: Policy[];
 }
 
 const initialState: State = {
   loading: false,
   loaded: false,
-  policies: [],
+  entities: [],
 };
 
 export function reducer(state = initialState, action: PoliciesActions): State {
@@ -19,15 +22,14 @@ export function reducer(state = initialState, action: PoliciesActions): State {
       return {
         ...state,
         loading: true,
-        loaded: false,
       };
-    case PoliciesActionTypes.LOAD_SUCCESS: {
+    case PoliciesActionTypes.LOAD_SUCCESS:
       return {
-        policies: action.payload,
+        ...state,
+        entities: action.payload,
         loading: false,
         loaded: true,
       };
-    }
     case PoliciesActionTypes.LOAD_FAIL:
       return {
         ...state,
@@ -39,4 +41,6 @@ export function reducer(state = initialState, action: PoliciesActions): State {
   }
 }
 
-export const getAllPolicies = (state: State) => state.policies;
+export const getPoliciesLoading = (state: State) => state.loading;
+export const getPoliciesLoaded = (state: State) => state.loaded;
+export const getPolicies = (state: State) => state.entities;

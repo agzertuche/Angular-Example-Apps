@@ -1,52 +1,23 @@
-<mat-sidenav-container
-  fullscreen
-  (backdropClick)="closeSidenav()"
->
-  <app-nav
-    [open]="showSidenav | async"
-    (closeMenu)="closeSidenav()"
-  >
-    <app-nav-item
-      (navigate)="closeSidenav()"
-      routerLink="/home"
-      icon="home"
-      hint="Go home"
-    >
+<mat-sidenav-container fullscreen (backdropClick)="closeSidenav()">
+  <app-nav [open]="showSidenav | async" (closeMenu)="closeSidenav()">
+    <app-nav-item (navigate)="closeSidenav()" routerLink="/home" icon="home" hint="Go home">
       Home
     </app-nav-item>
-    <app-nav-item
-      (navigate)="closeSidenav()"
-      routerLink="/policies"
-      icon="drive_eta"
-      hint="Manage your policies"
-    >
+    <app-nav-item (navigate)="closeSidenav()" routerLink="/policies" icon="drive_eta" hint="Manage your policies">
       Policies
     </app-nav-item>
-    <app-nav-item
-      (navigate)="closeSidenav()"
-      routerLink="/invoices"
-      icon="receipt"
-      hint="View all your invoices"
-    >
+    <app-nav-item (navigate)="closeSidenav()" routerLink="/invoices" icon="receipt" hint="View all your invoices">
       Invoices
     </app-nav-item>
-    <app-nav-item
-      (navigate)="closeSidenav()"
-      routerLink="/payments"
-      icon="payment"
-      hint="View previous payments"
-    >
+    <app-nav-item (navigate)="closeSidenav()" routerLink="/payments" icon="payment" hint="View previous payments">
       Payments
     </app-nav-item>
-    <app-nav-item
-      (navigate)="closeSidenav()"
-      routerLink="/claims"
-      icon="warning"
-      hint="Review claims of your policies"
-    >
+    <app-nav-item (navigate)="closeSidenav()" routerLink="/claims" icon="warning" hint="Review claims of your policies">
       Claims
     </app-nav-item>
   </app-nav>
   <app-toolbar (openMenu)="openSidenav()">Insurance App</app-toolbar>
-  <router-outlet></router-outlet>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </mat-sidenav-container>

@@ -1,2 +1,7 @@
-<div>Policies</div>
-<app-policies-list [policies]="policies | async"></app-policies-list>
+<h2>Policies</h2>
+<div class="list-container">
+  <div *ngIf="!((policies | async)?.length)">
+    No policies found, add one to get started.
+  </div>
+  <app-policies-list [policies]="policies | async"></app-policies-list>
+</div>

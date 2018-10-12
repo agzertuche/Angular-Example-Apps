@@ -1,14 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/purple-green.css';
 
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
+
 .mat-drawer-container {
   color: #333333 !important;
+}
+
+mat-card {
+  margin: 1rem;
 }

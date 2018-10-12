@@ -1,3 +1,7 @@
 mat-sidenav-container {
   background: rgba(0, 0, 0, 0.03);
 }
+
+main {
+  margin-top: 1rem;
+}

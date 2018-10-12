@@ -1,6 +1,6 @@
 import * as fromRouter from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
-import * as fromLayout from '../core/store/layout.reducer';
+import * as fromLayout from './layout.reducer';
 import {
   ActionReducer,
   ActionReducerMap,

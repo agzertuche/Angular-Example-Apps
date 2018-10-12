@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Policy } from '../../model/policy';
+import { Policy } from '../../models/policy';
 import { Store, select } from '@ngrx/store';
-import * as fromPolicies from '../../store';
-import * as PoliciesActions from '../../store/policies.actions';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-policies-collection-page',
@@ -12,11 +11,11 @@ import * as PoliciesActions from '../../store/policies.actions';
 })
 export class PoliciesCollectionPageComponent implements OnInit {
   policies: Observable<Policy[]>;
-  constructor(private store: Store<fromPolicies.State>) {
-    this.policies = this.store.pipe(select(fromPolicies.getAllPolicies));
-  }
+  constructor(private store: Store<fromStore.State>) {}
 
   ngOnInit() {
-    this.store.dispatch(new PoliciesActions.Load());
+    // this.policies = this.store.pipe(select(fromStore.getPoliciesEntities));
+    this.policies = this.store.select(fromStore.getPoliciesEntities);
+    this.store.dispatch(new fromStore.Load());
   }
 }

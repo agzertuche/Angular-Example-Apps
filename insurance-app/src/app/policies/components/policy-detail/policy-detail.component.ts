@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Policy } from '../../model/policy';
+import { Policy } from '../../models/policy';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-policy-detail',
@@ -9,6 +10,8 @@ import { Policy } from '../../model/policy';
 export class PolicyDetailComponent {
   @Input()
   policy: Policy;
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   get id() {
     return this.policy.id;
@@ -31,5 +34,9 @@ export class PolicyDetailComponent {
   }
   get end_date() {
     return this.policy.end_date;
+  }
+
+  onEdit() {
+    this.router.navigate(['edit', this.policy.id], { relativeTo: this.route });
   }
 }

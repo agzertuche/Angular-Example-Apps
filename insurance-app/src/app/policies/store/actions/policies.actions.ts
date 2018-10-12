@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Policy } from '../model/policy';
+import { Policy } from '../../models/policy';
 
 export enum PoliciesActionTypes {
   ADD = 'ADD',

@@ -1,15 +1,25 @@
-<a *ngIf="policy">
-  <div>
+<mat-card *ngIf="policy">
+  <mat-card-header>
+    <mat-card-title>
+      <h3>{{ alias | uppercase }}</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
     <div>
-      <div>{{ alias }}</div>
+      Type: {{ type }}
     </div>
     <div>
-      <p *ngIf="type">{{ type }}</p>
-      <p *ngIf="indent">{{ indent }}</p>
+      Indent: {{ indent }}
     </div>
     <div>
-      <span *ngIf="start_date">{{ start_date }}</span>
-      <span *ngIf="end_date">{{ end_date }}</span>
+      End date: {{ start_date }}
     </div>
-  </div>
-</a>
+    <div>
+      Start date: {{ end_date }}
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="mat-button" (click)="onEdit()">EDIT</button>
+    <button class="mat-button">DELETE</button>
+  </mat-card-actions>
+</mat-card>

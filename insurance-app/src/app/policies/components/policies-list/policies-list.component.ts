@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Policy } from '../../model/policy';
+import { Policy } from '../../models/policy';
 
 @Component({
   selector: 'app-policies-list',
