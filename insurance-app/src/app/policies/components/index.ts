@@ -1,13 +1,16 @@
-import { PoliciesListComponent } from './policies-list/policies-list.component';
 import { PolicyDetailComponent } from './policy-detail/policy-detail.component';
 import { PolicyFormComponent } from './policy-form/policy-form.component';
+import { PolicyListComponent } from './policy-list/policy-list.component';
+import { PolicyPreviewComponent } from './policy-preview/policy-preview.component';
 
 export const components: any[] = [
-  PoliciesListComponent,
+  PolicyListComponent,
   PolicyDetailComponent,
   PolicyFormComponent,
+  PolicyPreviewComponent,
 ];
 
-export * from './policies-list/policies-list.component';
+export * from './policy-detail/policy-detail.component';
 export * from './policy-detail/policy-detail.component';
 export * from './policy-form/policy-form.component';
+export * from './policy-preview/policy-preview.component';

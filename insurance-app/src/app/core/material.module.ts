@@ -17,6 +17,7 @@ import {
   MatFormFieldModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatProgressBarModule,
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -39,6 +40,7 @@ const materialModules = [
   MatFormFieldModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatProgressBarModule,
 ];
 @NgModule({
   imports: [...materialModules],

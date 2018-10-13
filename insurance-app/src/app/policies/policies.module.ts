@@ -8,12 +8,14 @@ import { services } from './services';
 import { containers } from './containers';
 import { components } from './components';
 import { MaterialModule } from '../core/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     PoliciesRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forFeature('policies', reducers),
     EffectsModule.forFeature([...effects]),
   ],

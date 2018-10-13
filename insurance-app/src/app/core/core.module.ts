@@ -17,7 +17,7 @@ import { NavItemComponent } from './components/nav-item/nav-item.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { CoreService } from './services/core.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const COMPONENTS = [
   NavLayoutComponent,
@@ -37,6 +37,7 @@ export const COMPONENTS = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,

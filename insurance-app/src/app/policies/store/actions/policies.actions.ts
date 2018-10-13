@@ -2,78 +2,85 @@ import { Action } from '@ngrx/store';
 import { Policy } from '../../models/policy';
 
 export enum PoliciesActionTypes {
-  ADD = 'ADD',
-  ADD_SUCCESS = 'ADD_SUCCESS',
-  ADD_FAIL = 'ADD_FAIL',
-  UPDATE = 'UPDATE',
-  UPDATE_SUCCESS = 'UPDATE_SUCCESS',
-  UPDATE_FAIL = 'UPDATE_FAIL',
-  REMOVE = 'REMOVE',
-  REMOVE_SUCCESS = 'REMOVE_SUCCESS',
-  REMOVE_FAIL = 'REMOVE_FAIL',
-  LOAD = 'LOAD',
-  LOAD_SUCCESS = 'LOAD_SUCCESS',
-  LOAD_FAIL = 'LOAD_FAIL',
+  AddPolicy = '[Policies] AddPolicy',
+  AddPolicySuccess = '[Policies] AddPolicySuccess',
+  AddPolicyFail = '[Policies] AddPolicyFail',
+  UpdatePolicy = '[Policies] UpdatePolicy',
+  UpdatePolicySuccess = '[Policies] UpdatePolicySuccess',
+  UpdatePolicyFail = '[Policies] UpdatePolicyFail',
+  RemovePolicy = '[Policies] RemovePolicy',
+  RemovePolicySuccess = '[Policies] RemovePolicySuccess',
+  RemovePolicyFail = '[Policies] RemovePolicyFail',
+  LoadPolicies = '[Policies] LoadPolicies',
+  LoadPoliciesSuccess = '[Policies] LoadPoliciesSuccess',
+  LoadPoliciesFail = '[Policies] LoadPoliciesFail',
+  // TODO: load all
+  SetCurrentPolicyID = '[Policies] SetCurrentPolicyID',
 }
 
-export class Add implements Action {
-  readonly type = PoliciesActionTypes.ADD;
+export class AddPolicy implements Action {
+  readonly type = PoliciesActionTypes.AddPolicy;
   constructor(public payload: Policy) {}
 }
-export class AddSuccess implements Action {
-  readonly type = PoliciesActionTypes.ADD_SUCCESS;
+export class AddPolicySuccess implements Action {
+  readonly type = PoliciesActionTypes.AddPolicySuccess;
   constructor(public payload: Policy) {}
 }
-export class AddFail implements Action {
-  readonly type = PoliciesActionTypes.ADD_FAIL;
+export class AddPolicyFail implements Action {
+  readonly type = PoliciesActionTypes.AddPolicyFail;
   constructor(public payload: Policy) {}
 }
-export class Update implements Action {
-  readonly type = PoliciesActionTypes.UPDATE;
+export class UpdatePolicy implements Action {
+  readonly type = PoliciesActionTypes.UpdatePolicy;
   constructor(public payload: Policy) {}
 }
-export class UpdateSuccess implements Action {
-  readonly type = PoliciesActionTypes.UPDATE_SUCCESS;
+export class UpdatePolicySuccess implements Action {
+  readonly type = PoliciesActionTypes.UpdatePolicySuccess;
   constructor(public payload: Policy) {}
 }
-export class UpdateFail implements Action {
-  readonly type = PoliciesActionTypes.UPDATE_FAIL;
+export class UpdatePolicyFail implements Action {
+  readonly type = PoliciesActionTypes.UpdatePolicyFail;
   constructor(public payload: Policy) {}
 }
-export class Remove implements Action {
-  readonly type = PoliciesActionTypes.REMOVE;
+export class RemovePolicy implements Action {
+  readonly type = PoliciesActionTypes.RemovePolicy;
   constructor(public payload: Policy) {}
 }
-export class RemoveSuccess implements Action {
-  readonly type = PoliciesActionTypes.REMOVE_SUCCESS;
+export class RemovePolicySuccess implements Action {
+  readonly type = PoliciesActionTypes.RemovePolicySuccess;
   constructor(public payload: Policy) {}
 }
-export class RemoveFail implements Action {
-  readonly type = PoliciesActionTypes.REMOVE_FAIL;
+export class RemovePolicyFail implements Action {
+  readonly type = PoliciesActionTypes.RemovePolicyFail;
   constructor(public payload: Policy) {}
 }
-export class Load implements Action {
-  readonly type = PoliciesActionTypes.LOAD;
+export class LoadPolicies implements Action {
+  readonly type = PoliciesActionTypes.LoadPolicies;
 }
-export class LoadSuccess implements Action {
-  readonly type = PoliciesActionTypes.LOAD_SUCCESS;
+export class LoadPoliciesSuccess implements Action {
+  readonly type = PoliciesActionTypes.LoadPoliciesSuccess;
   constructor(public payload: Policy[]) {}
 }
-export class LoadFail implements Action {
-  readonly type = PoliciesActionTypes.LOAD_FAIL;
+export class LoadPoliciesFail implements Action {
+  readonly type = PoliciesActionTypes.LoadPoliciesFail;
   constructor(public payload: Policy) {}
+}
+export class SetCurrentPolicyID implements Action {
+  readonly type = PoliciesActionTypes.SetCurrentPolicyID;
+  constructor(public payload: string) {}
 }
 
 export type PoliciesActions =
-  | Add
-  | AddSuccess
-  | AddFail
-  | Update
-  | UpdateSuccess
-  | UpdateFail
-  | Remove
-  | RemoveSuccess
-  | RemoveFail
-  | Load
-  | LoadSuccess
-  | LoadFail;
+  | AddPolicy
+  | AddPolicySuccess
+  | AddPolicyFail
+  | UpdatePolicy
+  | UpdatePolicySuccess
+  | UpdatePolicyFail
+  | RemovePolicy
+  | RemovePolicySuccess
+  | RemovePolicyFail
+  | LoadPolicies
+  | LoadPoliciesSuccess
+  | LoadPoliciesFail
+  | SetCurrentPolicyID;

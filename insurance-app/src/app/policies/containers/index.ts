@@ -1,13 +1,16 @@
-import { PoliciesCollectionPageComponent } from './collection-page/collection-page.component';
-import { FormPageComponent } from './form-page/form-page.component';
-import { ViewPageComponent } from './view-page/view-page.component';
+import { PolicyListPageComponent } from './policy-list-page/policy-list-page.component';
+import { PolicyEditPageComponent } from './policy-edit-page/policy-edit-page.component';
+import { PolicyNewPageComponent } from './policy-new-page/policy-new-page.component';
+import { PolicyViewPageComponent } from './policy-view-page/policy-view-page.component';
 
 export const containers: any[] = [
-  PoliciesCollectionPageComponent,
-  FormPageComponent,
-  ViewPageComponent,
+  PolicyListPageComponent,
+  PolicyEditPageComponent,
+  PolicyNewPageComponent,
+  PolicyViewPageComponent,
 ];
 
-export * from './collection-page/collection-page.component';
-export * from './form-page/form-page.component';
-export * from './view-page/view-page.component';
+export * from './policy-list-page/policy-list-page.component';
+export * from './policy-edit-page/policy-edit-page.component';
+export * from './policy-new-page/policy-new-page.component';
+export * from './policy-view-page/policy-view-page.component';

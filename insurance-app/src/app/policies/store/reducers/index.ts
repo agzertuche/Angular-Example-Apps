@@ -11,33 +11,39 @@ export interface State extends fromRoot.State {
 }
 
 export interface PoliciesState {
-  data: fromPolicies.State;
+  policies: fromPolicies.State;
 }
 
 export const reducers: ActionReducerMap<PoliciesState> = {
-  data: fromPolicies.reducer,
+  policies: fromPolicies.reducer,
 };
 
 // createFeatureSelector is used for selecting feature states that are loaded eagerly or lazily.
-export const getPoliciesState = createFeatureSelector<State, PoliciesState>(
+export const getPoliciesRootState = createFeatureSelector<PoliciesState>(
   'policies',
 );
 
-export const getPoliciesDataState = createSelector(
+export const getPoliciesState = createSelector(
+  getPoliciesRootState,
+  (state: PoliciesState) => state.policies,
+);
+
+export const {
+  selectAll,
+  selectEntities,
+  selectIds,
+  selectTotal,
+} = fromPolicies.adapter.getSelectors(getPoliciesState);
+
+export const getSelectedPolicyId = createSelector(
   getPoliciesState,
-  (state: PoliciesState) => state.data,
+  fromPolicies.getCurrentPolicyId,
 );
 
-export const getPoliciesEntities = createSelector(
-  getPoliciesDataState,
-  fromPolicies.getPolicies,
-);
-
-export const getPoliciesLoaded = createSelector(
-  getPoliciesDataState,
-  fromPolicies.getPoliciesLoaded,
-);
-export const getPoliciesLoading = createSelector(
-  getPoliciesDataState,
-  fromPolicies.getPoliciesLoading,
+export const getSelectedPolicy = createSelector(
+  selectEntities,
+  getSelectedPolicyId,
+  (entities, id) => {
+    return id && entities[id];
+  },
 );

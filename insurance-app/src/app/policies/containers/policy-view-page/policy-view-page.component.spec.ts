@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PoliciesListComponent } from './policies-list.component';
+import { PolicyViewPageComponent } from './policy-view-page.component';
 
-describe('PoliciesListComponent', () => {
-  let component: PoliciesListComponent;
-  let fixture: ComponentFixture<PoliciesListComponent>;
+describe('PolicyViewPageComponent', () => {
+  let component: PolicyViewPageComponent;
+  let fixture: ComponentFixture<PolicyViewPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PoliciesListComponent],
+      declarations: [PolicyViewPageComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PoliciesListComponent);
+    fixture = TestBed.createComponent(PolicyViewPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

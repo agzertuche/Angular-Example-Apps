@@ -3,44 +3,55 @@ import {
   PoliciesActionTypes,
 } from '../actions/policies.actions';
 import { Policy } from '../../models/policy';
+import { createEntityAdapter, EntityState } from '@ngrx/entity';
 
-export interface State {
-  loading: boolean;
-  loaded: boolean;
-  entities: Policy[];
+export const adapter = createEntityAdapter<Policy>({
+  selectId: (policy: Policy) => policy.id,
+  sortComparer: false,
+});
+
+// -----------------------------------------
+// The shape of EntityState
+// ------------------------------------------
+// interface EntityState<Policy> {
+//   ids: string[] | number[];
+//   entities: { [id: string]: Policy };
+// }
+// -----------------------------------------
+// -> ids arrays allow us to sort data easily
+// -> entities map allows us to access the data quickly without iterating/filtering though an array of objects
+
+export interface State extends EntityState<Policy> {
+  currentPolicyId: string | null;
 }
 
-const initialState: State = {
-  loading: false,
-  loaded: false,
-  entities: [],
-};
+export const initialState: State = adapter.getInitialState({
+  currentPolicyId: null,
+});
 
-export function reducer(state = initialState, action: PoliciesActions): State {
+export function reducer(
+  state: State = initialState,
+  action: PoliciesActions,
+): State {
   switch (action.type) {
-    case PoliciesActionTypes.LOAD:
+    case PoliciesActionTypes.LoadPoliciesSuccess:
+      return adapter.addAll(action.payload, state);
+    case PoliciesActionTypes.SetCurrentPolicyID:
       return {
         ...state,
-        loading: true,
-      };
-    case PoliciesActionTypes.LOAD_SUCCESS:
-      return {
-        ...state,
-        entities: action.payload,
-        loading: false,
-        loaded: true,
-      };
-    case PoliciesActionTypes.LOAD_FAIL:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
+        currentPolicyId: action.payload,
       };
     default:
       return state;
   }
 }
 
-export const getPoliciesLoading = (state: State) => state.loading;
-export const getPoliciesLoaded = (state: State) => state.loaded;
-export const getPolicies = (state: State) => state.entities;
+/**
+ * Because the data structure is defined within the reducer it is optimal to
+ * locate our selector functions at this level. If store is to be thought of
+ * as a database, and reducers the tables, selectors can be considered the
+ * queries into said database. Remember to keep your selectors small and
+ * focused so they can be combined and composed to fit each particular
+ * use-case.
+ */
+export const getCurrentPolicyId = (state: State) => state.currentPolicyId;

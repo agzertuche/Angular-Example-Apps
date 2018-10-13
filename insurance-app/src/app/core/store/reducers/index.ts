@@ -1,6 +1,4 @@
-import * as fromRouter from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
-import * as fromLayout from './layout.reducer';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -9,15 +7,20 @@ import {
   createFeatureSelector,
 } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
+import * as fromRouter from '@ngrx/router-store';
+import * as fromLayout from './layout.reducer';
+import * as fromLoading from './loading.reducer';
 
 export interface State {
   layout: fromLayout.State;
   router: fromRouter.RouterReducerState;
+  loading: fromLoading.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
   layout: fromLayout.reducer,
   router: fromRouter.routerReducer,
+  loading: fromLoading.reducer,
 };
 
 // Middleware to log all actions
@@ -41,4 +44,13 @@ export const getLayoutState = createFeatureSelector<State, fromLayout.State>(
 export const getShowSidenav = createSelector(
   getLayoutState,
   fromLayout.getShowSidenav,
+);
+
+export const getLoadingState = createFeatureSelector<State, fromLoading.State>(
+  'loading',
+);
+
+export const getLoading = createSelector(
+  getLoadingState,
+  fromLoading.getLoading,
 );

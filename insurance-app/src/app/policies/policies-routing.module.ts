@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { PoliciesCollectionPageComponent } from './containers/collection-page/collection-page.component';
-import { PolicyDetailComponent } from './components/policy-detail/policy-detail.component';
-import { FormPageComponent } from './containers/form-page/form-page.component';
+import {
+  PolicyListPageComponent,
+  PolicyNewPageComponent,
+  PolicyEditPageComponent,
+  PolicyViewPageComponent,
+} from './containers';
 
 const routes: Routes = [
-  { path: ':id', component: PolicyDetailComponent },
   {
     path: '',
-    component: PoliciesCollectionPageComponent,
+    component: PolicyListPageComponent,
+    pathMatch: 'full',
   },
-  { path: 'new', component: FormPageComponent },
+  { path: ':id', component: PolicyViewPageComponent },
+  { path: 'new', component: PolicyNewPageComponent },
   {
     path: 'edit/:id',
-    component: FormPageComponent,
+    component: PolicyEditPageComponent,
   },
 ];
 

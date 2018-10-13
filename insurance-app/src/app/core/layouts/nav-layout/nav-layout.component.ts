@@ -10,9 +10,11 @@ import * as LayoutActions from '../../store/actions/layout.actions';
 })
 export class NavLayoutComponent {
   showSidenav: Observable<boolean>;
+  loading: Observable<boolean>;
 
   constructor(private store: Store<fromRoot.State>) {
     this.showSidenav = this.store.pipe(select(fromRoot.getShowSidenav));
+    this.loading = this.store.pipe(select(fromRoot.getLoading));
   }
 
   closeSidenav() {

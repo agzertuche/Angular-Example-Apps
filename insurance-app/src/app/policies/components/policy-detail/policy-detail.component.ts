@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Policy } from '../../models/policy';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PolicyDetailComponent {
   @Input()
   policy: Policy;
+  @Output()
+  delete = new EventEmitter();
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
@@ -37,6 +39,17 @@ export class PolicyDetailComponent {
   }
 
   onEdit() {
-    this.router.navigate(['edit', this.policy.id], { relativeTo: this.route });
+    // FIXME: router should not be here
+    this.router.navigate(['../edit', this.policy.id], {
+      relativeTo: this.route,
+    });
+  }
+
+  onDelete() {
+    // TODO: add a material dialog
+    const remove = window.confirm('Are you sure?');
+    if (remove) {
+      this.delete.emit();
+    }
   }
 }

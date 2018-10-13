@@ -5,21 +5,25 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div>
-      Type: {{ type }}
-    </div>
-    <div>
-      Indent: {{ indent }}
-    </div>
-    <div>
-      End date: {{ start_date }}
-    </div>
-    <div>
-      Start date: {{ end_date }}
-    </div>
+    <div>Type: {{ type }}</div>
+    <div>Indent: {{ indent }}</div>
+    <div>End date: {{ start_date }}</div>
+    <div>Start date: {{ end_date }}</div>
   </mat-card-content>
   <mat-card-actions>
-    <button class="mat-button" (click)="onEdit()">EDIT</button>
-    <button class="mat-button">DELETE</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onEdit()"
+    >
+      EDIT
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="onDelete()"
+    >
+      DELETE
+    </button>
   </mat-card-actions>
 </mat-card>
