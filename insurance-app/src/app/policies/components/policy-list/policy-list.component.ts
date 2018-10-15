@@ -11,6 +11,8 @@ export class PolicyListComponent {
   policies: Policy[];
   @Output()
   select = new EventEmitter<Policy>();
+  @Input()
+  loading = false;
 
   handleSelect(policy: Policy) {
     this.select.emit(policy);

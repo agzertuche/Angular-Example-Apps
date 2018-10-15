@@ -4,6 +4,7 @@ import {
 } from '../actions/policies.actions';
 import { Policy } from '../../models/policy';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import { PolicyDetailComponent } from '../../components';
 
 export const adapter = createEntityAdapter<Policy>({
   selectId: (policy: Policy) => policy.id,
@@ -23,10 +24,14 @@ export const adapter = createEntityAdapter<Policy>({
 
 export interface State extends EntityState<Policy> {
   currentPolicyId: string | null;
+  loading: boolean;
+  loaded: boolean;
 }
 
 export const initialState: State = adapter.getInitialState({
   currentPolicyId: null,
+  loading: false,
+  loaded: false,
 });
 
 export function reducer(
@@ -34,15 +39,30 @@ export function reducer(
   action: PoliciesActions,
 ): State {
   switch (action.type) {
+    case PoliciesActionTypes.LoadAllPolicies:
+      return {
+        ...state,
+        loading: true,
+        loaded: false,
+      };
     case PoliciesActionTypes.LoadAllPoliciesSuccess:
-      return adapter.addAll(action.payload, state);
+      return adapter.addAll(action.payload, {
+        ...state,
+        loading: false,
+        loaded: true,
+      });
     case PoliciesActionTypes.SetCurrentPolicyID:
       return {
         ...state,
         currentPolicyId: action.payload,
       };
-    // case PoliciesActionTypes.UpdatePolicy:
-    //   return adapter.updateOne(action.payload, state);
+    case PoliciesActionTypes.UpdatePolicy:
+    case PoliciesActionTypes.AddPolicy:
+      return adapter.upsertOne(action.payload, state);
+    case PoliciesActionTypes.RemovePolicy:
+      return adapter.removeOne(action.payload.id, state);
+    case PoliciesActionTypes.LoadPolicy:
+      return adapter.addOne(action.payload, state);
     default:
       return state;
   }
@@ -57,3 +77,5 @@ export function reducer(
  * use-case.
  */
 export const getCurrentPolicyId = (state: State) => state.currentPolicyId;
+export const getLoding = (state: State) => state.loading;
+export const getLoaded = (state: State) => state.loaded;

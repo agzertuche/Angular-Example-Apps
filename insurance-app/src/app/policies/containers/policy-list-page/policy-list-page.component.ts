@@ -4,6 +4,7 @@ import { Policy } from '../../models/policy';
 import { Store, select } from '@ngrx/store';
 import * as fromStore from '../../store';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-policy-list-page',
@@ -12,18 +13,22 @@ import { Router } from '@angular/router';
 })
 export class PolicyListPageComponent implements OnInit {
   policies: Observable<Policy[]>;
+  loading: Observable<boolean>;
 
-  constructor(private store: Store<fromStore.State>, private router: Router) {}
+  constructor(private store: Store<fromStore.State>, private router: Router) {
+    this.policies = this.store.pipe(select(fromStore.selectAll));
+    this.loading = this.store.pipe(select(fromStore.getLoading));
+  }
 
   ngOnInit() {
-    // Selector from the main store allows us to monitor changes
-    // only on policies state without monitoring the rest of the state
-    this.policies = this.store.pipe(select(fromStore.selectAll));
     this.store.dispatch(new fromStore.LoadAllPolicies());
   }
 
   selectPolicy(policy: any) {
     this.store.dispatch(new fromStore.SetCurrentPolicyID(policy.id));
-    this.router.navigate(['/policies/view', policy.id]);
+  }
+
+  newPolicy() {
+    this.router.navigate(['/policies/new']);
   }
 }

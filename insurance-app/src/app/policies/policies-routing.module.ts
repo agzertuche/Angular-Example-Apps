@@ -7,17 +7,28 @@ import {
   PolicyEditPageComponent,
   PolicyViewPageComponent,
 } from './containers';
+import * as fromGuards from './guards';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [fromGuards.PoliciesGuard],
     component: PolicyListPageComponent,
     pathMatch: 'full',
   },
-  { path: 'new', component: PolicyNewPageComponent },
-  { path: 'view/:id', component: PolicyViewPageComponent },
+  {
+    path: 'new',
+    canActivate: [fromGuards.PoliciesGuard],
+    component: PolicyNewPageComponent,
+  },
+  {
+    path: 'view/:id',
+    canActivate: [fromGuards.PoliciesGuard],
+    component: PolicyViewPageComponent,
+  },
   {
     path: 'edit/:id',
+    canActivate: [fromGuards.PoliciesGuard],
     component: PolicyEditPageComponent,
   },
 ];

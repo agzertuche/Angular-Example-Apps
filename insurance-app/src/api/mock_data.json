@@ -1,36 +1,12 @@
 {
   "policies": [
     {
-      "id": "5bb7e225fc13ae7745000016",
-      "alias": "Marty Tuerena",
-      "type": "Others",
-      "indent": 1,
-      "start_date": "1/31/2018",
-      "end_date": "4/23/2018"
-    },
-    {
-      "id": "5bb7e225fc13ae7745000017",
-      "alias": "Stillmann Ebbin",
-      "type": "Home",
-      "indent": 2,
-      "start_date": "10/30/2017",
-      "end_date": "11/23/2017"
-    },
-    {
-      "id": "5bb7e225fc13ae7745000018",
-      "alias": "Costa Maylard",
-      "type": "Company",
-      "indent": 3,
-      "start_date": "6/1/2018",
-      "end_date": "10/4/2018"
-    },
-    {
-      "id": "5bb7e225fc13ae7745000019",
-      "alias": "Milissent Spall",
-      "type": "Others",
-      "indent": 4,
-      "start_date": "2/5/2018",
-      "end_date": "5/23/2018"
+      "id": 1,
+      "alias": "Masd",
+      "type": "",
+      "indent": "asdf",
+      "start_date": "2018-10-08T05:00:00.000Z",
+      "end_date": "2018-10-19T05:00:00.000Z"
     }
   ],
   "invoices": [

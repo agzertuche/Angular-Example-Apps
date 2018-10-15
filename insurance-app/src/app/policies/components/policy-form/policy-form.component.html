@@ -2,11 +2,7 @@
   <mat-card>
     <mat-card-content>
       <mat-form-field>
-        <input
-          matInput
-          placeholder="Alias"
-          formControlName="alias"
-        >
+        <input matInput placeholder="Alias" formControlName="alias">
       </mat-form-field>
       <mat-select placeholder="Type">
         <mat-option value="car">Car</mat-option>
@@ -14,54 +10,25 @@
         <mat-option value="other">Other</mat-option>
       </mat-select>
       <mat-form-field>
-        <input
-          matInput
-          placeholder="Indent"
-          formControlName="indent"
-        >
+        <input matInput placeholder="Indent" formControlName="indent">
       </mat-form-field>
       <mat-form-field>
-        <input
-          matInput
-          [matDatepicker]="startdate"
-          placeholder="Start date"
-          formControlName="start_date"
-        >
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="startdate"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="startdate" placeholder="Start date" formControlName="start_date">
+        <mat-datepicker-toggle matSuffix [for]="startdate"></mat-datepicker-toggle>
         <mat-datepicker #startdate></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <input
-          matInput
-          [matDatepicker]="enddate"
-          placeholder="End date"
-          formControlName="end_date"
-        >
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="enddate"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="enddate" placeholder="End date" formControlName="end_date">
+        <mat-datepicker-toggle matSuffix [for]="enddate"></mat-datepicker-toggle>
         <mat-datepicker #enddate></mat-datepicker>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button
-        type="submit"
-        [disabled]="!policyForm.valid"
-        mat-raised-button
-        color="accent"
-        (click)="savePolicy()"
-      >
+      <button type="submit" [disabled]="!policyForm.valid || !policyForm.touched" mat-raised-button color="accent"
+        (click)="savePolicy($event)">
         SAVE
       </button>
-      <button
-        mat-raised-button
-        color="warn"
-        (click)="reset()"
-      >
+      <button mat-raised-button color="warn" (click)="reset()">
         RESET
       </button>
     </mat-card-actions>

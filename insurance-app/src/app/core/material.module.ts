@@ -18,8 +18,10 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatProgressBarModule,
+  MatDialogModule,
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MaterialConfirmDialogComponent } from '../shared/components/material-confirm-dialog..component';
 
 const materialModules = [
   MatGridListModule,
@@ -41,9 +43,12 @@ const materialModules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatProgressBarModule,
+  MatDialogModule,
 ];
 @NgModule({
   imports: [...materialModules],
-  exports: [...materialModules],
+  declarations: [MaterialConfirmDialogComponent],
+  exports: [...materialModules, MaterialConfirmDialogComponent],
+  entryComponents: [MaterialConfirmDialogComponent],
 })
 export class MaterialModule {}

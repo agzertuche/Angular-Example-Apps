@@ -1,7 +1,16 @@
-<h2>Policies</h2>
+<div>
+
+  <mat-toolbar-row>
+    <span>
+      <h2>Policies</h2>
+    </span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" (click)="newPolicy()">
+      NEW
+    </button>
+  </mat-toolbar-row>
+</div>
+
 <div class="list-container">
-  <app-policy-list
-    [policies]="policies | async"
-    (select)="selectPolicy($event)"
-  ></app-policy-list>
+  <app-policy-list [policies]="policies | async" (select)="selectPolicy($event)" [loading]="loading | async"></app-policy-list>
 </div>

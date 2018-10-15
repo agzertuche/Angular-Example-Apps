@@ -36,10 +36,10 @@ export class CoreService {
     );
   }
 
-  delete(route: string, body: object): Observable<any> {
+  delete(route: string): Observable<any> {
     return this.http.delete(this.getUrl(route), httpOptions).pipe(
       tap(x => console.log('deleting data')),
-      catchError((error: any) => Observable.throw(error.json())),
+      catchError((error: any) => Observable.throw(error)),
     );
   }
 

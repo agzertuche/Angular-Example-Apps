@@ -47,3 +47,13 @@ export const getSelectedPolicy = createSelector(
     return id && entities[id];
   },
 );
+
+export const getLoading = createSelector(
+  getPoliciesState,
+  fromPolicies.getLoding,
+);
+
+export const getLoaded = createSelector(
+  getPoliciesState,
+  fromPolicies.getLoaded,
+);

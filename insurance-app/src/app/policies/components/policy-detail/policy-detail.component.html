@@ -11,18 +11,10 @@
     <div>Start date: {{ end_date }}</div>
   </mat-card-content>
   <mat-card-actions>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="onEdit()"
-    >
+    <button mat-raised-button color="primary" (click)="handleEdit()">
       EDIT
     </button>
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="onDelete()"
-    >
+    <button mat-raised-button color="warn" (click)="handleDelete()">
       DELETE
     </button>
   </mat-card-actions>

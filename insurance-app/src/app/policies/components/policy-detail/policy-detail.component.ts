@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Policy } from '../../models/policy';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { MaterialConfirmDialogComponent } from 'src/app/shared/components/material-confirm-dialog..component';
 
 @Component({
   selector: 'app-policy-detail',
@@ -11,9 +13,13 @@ export class PolicyDetailComponent {
   @Input()
   policy: Policy;
   @Output()
-  delete = new EventEmitter();
+  delete = new EventEmitter<Policy>();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog,
+  ) {}
 
   get id() {
     return this.policy.id;
@@ -38,18 +44,23 @@ export class PolicyDetailComponent {
     return this.policy.end_date;
   }
 
-  onEdit() {
+  handleEdit() {
     // FIXME: router should not be here
     this.router.navigate(['../../edit', this.policy.id], {
       relativeTo: this.route,
     });
   }
 
-  onDelete() {
-    // TODO: add a material dialog
-    const remove = window.confirm('Are you sure?');
-    if (remove) {
-      this.delete.emit();
-    }
+  handleDelete() {
+    const dialogRef = this.dialog.open(MaterialConfirmDialogComponent, {
+      width: '250px',
+      data: this.policy,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.delete.emit(this.policy);
+      }
+    });
   }
 }

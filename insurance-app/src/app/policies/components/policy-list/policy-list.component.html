@@ -1,8 +1,6 @@
-<mat-list>
-  <app-policy-preview
-    *ngFor="let policy of policies"
-    [policy]="policy"
-    (select)="handleSelect(policy)"
-    style="cursor: pointer;"
-  ></app-policy-preview>
+<mat-list *ngIf="!loading; else progressBar">
+  <app-policy-preview *ngFor="let policy of policies" [policy]="policy" (select)="handleSelect(policy)" style="cursor: pointer;"></app-policy-preview>
 </mat-list>
+<ng-template #progressBar>
+  <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+</ng-template>

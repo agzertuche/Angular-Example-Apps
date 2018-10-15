@@ -2,21 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
-import {
-  switchMap,
-  map,
-  catchError,
-  startWith,
-  mapTo,
-  tap,
-} from 'rxjs/operators';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import * as fromActions from '../actions/policies.actions';
 import * as fromServices from '../../services';
-import * as fromRootStore from '../../../core/store';
-import * as fromStore from '../../store';
-
-import { Loading, Loaded } from '../../../core/store/actions/loading.actions';
-import { ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -49,29 +37,83 @@ export class PoliciesEffects {
             policy =>
               new fromActions.LoadPolicySuccess('5bb7e225fc13ae7745000016'),
           ),
-          catchError(error => of(new fromActions.LoadPolicyFail())),
+          catchError(error => of(new fromActions.LoadPolicyFail(error))),
+        );
+      }),
+    );
+
+  @Effect()
+  updatePolicy: Observable<Action> = this.actions
+    .ofType(fromActions.PoliciesActionTypes.UpdatePolicy)
+    .pipe(
+      map((action: fromActions.UpdatePolicy) => action.payload),
+      switchMap(updatedPolicy => {
+        return this.service.updatePolicy(updatedPolicy).pipe(
+          map(policy => new fromActions.UpdatePolicySuccess(policy)),
+          catchError(error => of(new fromActions.UpdatePolicyFail(error))),
+        );
+      }),
+    );
+
+  @Effect()
+  createPolicy: Observable<Action> = this.actions
+    .ofType(fromActions.PoliciesActionTypes.AddPolicy)
+    .pipe(
+      map((action: fromActions.AddPolicy) => action.payload),
+      switchMap(newPolicy => {
+        return this.service.createPolicy(newPolicy).pipe(
+          map(policy => new fromActions.AddPolicySuccess(policy)),
+          catchError(error => of(new fromActions.AddPolicyFail(error))),
         );
       }),
     );
 
   @Effect({ dispatch: false })
-  savePolicy: Observable<Action> = this.actions
+  policySaved: Observable<Action> = this.actions
     .ofType(
       fromActions.PoliciesActionTypes.AddPolicySuccess,
       fromActions.PoliciesActionTypes.UpdatePolicySuccess,
     )
     .pipe(
-      tap(() => {
-        this.router.navigate(['/policies/5bb7e225fc13ae7745000016']);
+      tap(
+        (
+          action:
+            | fromActions.UpdatePolicySuccess
+            | fromActions.AddPolicySuccess,
+        ) => {
+          this.router.navigate([`/policies/view/${action.payload.id}`]);
+        },
+      ),
+    );
+
+  @Effect()
+  removePolicy: Observable<Action> = this.actions
+    .ofType(fromActions.PoliciesActionTypes.RemovePolicy)
+    .pipe(
+      map((action: fromActions.RemovePolicy) => action.payload),
+      switchMap(deletedPolicy => {
+        return this.service.removePolicy(deletedPolicy).pipe(
+          map(policy => new fromActions.RemovePolicySuccess(policy)),
+          catchError(error => of(new fromActions.RemovePolicyFail(error))),
+        );
       }),
     );
 
-  // @Effect({ dispatch: false })
-  // selectPolicy: Observable<Action> = this.actions
-  //   .ofType(fromActions.PoliciesActionTypes.SetCurrentPolicyID)
-  //   .pipe(
-  //     tap(() => {
-  //       this.router.navigate(['/policies/view', fromStore.getSelectedPolicyId]);
-  //     }),
-  //   );
+  @Effect({ dispatch: false })
+  policyDeleted: Observable<Action> = this.actions
+    .ofType(fromActions.PoliciesActionTypes.RemovePolicySuccess)
+    .pipe(
+      tap((action: fromActions.RemovePolicySuccess) => {
+        this.router.navigate([`policies`]);
+      }),
+    );
+
+  @Effect({ dispatch: false })
+  selectPolicy: Observable<Action> = this.actions
+    .ofType(fromActions.PoliciesActionTypes.SetCurrentPolicyID)
+    .pipe(
+      tap((action: fromActions.SetCurrentPolicyID) => {
+        this.router.navigate(['/policies/view', action.payload]);
+      }),
+    );
 }

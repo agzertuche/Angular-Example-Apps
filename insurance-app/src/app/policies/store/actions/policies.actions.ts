@@ -2,10 +2,10 @@ import { Action } from '@ngrx/store';
 import { Policy } from '../../models/policy';
 
 export enum PoliciesActionTypes {
-  AddPolicy = '[Policy List Page] AddPolicy',
+  AddPolicy = '[Policy New Page] AddPolicy',
   AddPolicySuccess = '[Policies API Service] AddPolicySuccess',
   AddPolicyFail = '[Policies API Service] AddPolicyFail',
-  UpdatePolicy = '[Policy New Page] UpdatePolicy',
+  UpdatePolicy = '[Policy Edit Page] UpdatePolicy',
   UpdatePolicySuccess = '[Policies API Service] UpdatePolicySuccess',
   UpdatePolicyFail = '[Policies API Service] UpdatePolicyFail',
   RemovePolicy = '[Policy View Page] RemovePolicy',
@@ -30,7 +30,7 @@ export class AddPolicySuccess implements Action {
 }
 export class AddPolicyFail implements Action {
   readonly type = PoliciesActionTypes.AddPolicyFail;
-  constructor(public payload: Policy) {}
+  constructor(public payload: any) {}
 }
 export class UpdatePolicy implements Action {
   readonly type = PoliciesActionTypes.UpdatePolicy;
@@ -42,7 +42,7 @@ export class UpdatePolicySuccess implements Action {
 }
 export class UpdatePolicyFail implements Action {
   readonly type = PoliciesActionTypes.UpdatePolicyFail;
-  constructor(public payload: Policy) {}
+  constructor(public payload: any) {}
 }
 export class RemovePolicy implements Action {
   readonly type = PoliciesActionTypes.RemovePolicy;
@@ -54,7 +54,7 @@ export class RemovePolicySuccess implements Action {
 }
 export class RemovePolicyFail implements Action {
   readonly type = PoliciesActionTypes.RemovePolicyFail;
-  constructor(public payload: Policy) {}
+  constructor(public payload: any) {}
 }
 export class LoadAllPolicies implements Action {
   readonly type = PoliciesActionTypes.LoadAllPolicies;
@@ -65,11 +65,11 @@ export class LoadAllPoliciesSuccess implements Action {
 }
 export class LoadAllPoliciesFail implements Action {
   readonly type = PoliciesActionTypes.LoadAllPoliciesFail;
-  constructor(public payload: Policy) {}
+  constructor(public payload: any) {}
 }
 export class LoadPolicy implements Action {
   readonly type = PoliciesActionTypes.LoadPolicy;
-  constructor(public payload: string) {}
+  constructor(public payload: Policy) {}
 }
 export class LoadPolicySuccess implements Action {
   readonly type = PoliciesActionTypes.LoadPolicySuccess;
@@ -77,6 +77,7 @@ export class LoadPolicySuccess implements Action {
 }
 export class LoadPolicyFail implements Action {
   readonly type = PoliciesActionTypes.LoadPolicyFail;
+  constructor(public payload: any) {}
 }
 export class SetCurrentPolicyID implements Action {
   readonly type = PoliciesActionTypes.SetCurrentPolicyID;
