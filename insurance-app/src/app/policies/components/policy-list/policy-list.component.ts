@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Policy } from '../../models/policy';
 
 @Component({
@@ -9,4 +9,10 @@ import { Policy } from '../../models/policy';
 export class PolicyListComponent {
   @Input()
   policies: Policy[];
+  @Output()
+  select = new EventEmitter<Policy>();
+
+  handleSelect(policy: Policy) {
+    this.select.emit(policy);
+  }
 }

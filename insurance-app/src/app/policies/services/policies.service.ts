@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CoreService } from '../../core/services/core.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class PoliciesService {
@@ -9,5 +9,11 @@ export class PoliciesService {
 
   getPolicies(): Observable<any> {
     return this.service.get('policies').pipe(map(policies => policies || []));
+  }
+
+  getPolicy(id: string): Observable<any> {
+    return this.service
+      .get(`policies/${id}`)
+      .pipe(switchMap(policy => policy || {}));
   }
 }

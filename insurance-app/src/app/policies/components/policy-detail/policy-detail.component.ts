@@ -40,7 +40,7 @@ export class PolicyDetailComponent {
 
   onEdit() {
     // FIXME: router should not be here
-    this.router.navigate(['../edit', this.policy.id], {
+    this.router.navigate(['../../edit', this.policy.id], {
       relativeTo: this.route,
     });
   }

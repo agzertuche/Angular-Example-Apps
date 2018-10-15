@@ -14,8 +14,8 @@ const routes: Routes = [
     component: PolicyListPageComponent,
     pathMatch: 'full',
   },
-  { path: ':id', component: PolicyViewPageComponent },
   { path: 'new', component: PolicyNewPageComponent },
+  { path: 'view/:id', component: PolicyViewPageComponent },
   {
     path: 'edit/:id',
     component: PolicyEditPageComponent,

@@ -1,24 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Policy } from '../../models/policy';
 
 @Component({
   selector: 'app-policy-preview',
   template: `
-    <a [routerLink]="['/policies', id]">
-      <mat-card>
-        <mat-card-title-group>
-          <mat-card-title>{{ alias }}</mat-card-title>
-        </mat-card-title-group>
-        <mat-card-footer>
-          <span>{{ type }}</span>
-        </mat-card-footer>
-      </mat-card>
-    </a>
+    <mat-card (click)="handleSelect()">
+      <mat-card-title-group>
+        <mat-card-title>{{ alias }}</mat-card-title>
+      </mat-card-title-group>
+      <mat-card-footer>
+        <span>{{ type }}</span>
+      </mat-card-footer>
+    </mat-card>
   `,
 })
 export class PolicyPreviewComponent {
   @Input()
   policy: Policy;
+  @Output()
+  select = new EventEmitter<Policy>();
 
   get id() {
     return this.policy.id;
@@ -30,5 +30,9 @@ export class PolicyPreviewComponent {
 
   get type() {
     return this.policy.type;
+  }
+
+  handleSelect() {
+    this.select.emit(this.policy);
   }
 }

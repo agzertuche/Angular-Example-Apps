@@ -58,7 +58,11 @@ export class PolicyFormComponent implements OnInit, OnChanges {
     // });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.policy) {
+      this.policyForm.patchValue({ ...this.policy });
+    }
+  }
 
   ngOnChanges() {
     if (this.policy) {

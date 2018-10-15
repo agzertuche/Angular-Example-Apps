@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Policy } from '../../models/policy';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromStore from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -20,7 +20,7 @@ export class PolicyEditPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.policy = this.store.select(fromStore.getpolic);
+    this.policy = this.store.pipe(select(fromStore.getSelectedPolicy));
   }
 
   updatePolicy(updatedPolicy: Policy) {

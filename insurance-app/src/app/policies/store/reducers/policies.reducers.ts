@@ -34,13 +34,15 @@ export function reducer(
   action: PoliciesActions,
 ): State {
   switch (action.type) {
-    case PoliciesActionTypes.LoadPoliciesSuccess:
+    case PoliciesActionTypes.LoadAllPoliciesSuccess:
       return adapter.addAll(action.payload, state);
     case PoliciesActionTypes.SetCurrentPolicyID:
       return {
         ...state,
         currentPolicyId: action.payload,
       };
+    // case PoliciesActionTypes.UpdatePolicy:
+    //   return adapter.updateOne(action.payload, state);
     default:
       return state;
   }

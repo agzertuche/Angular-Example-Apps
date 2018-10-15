@@ -2,5 +2,7 @@
   <app-policy-preview
     *ngFor="let policy of policies"
     [policy]="policy"
+    (select)="handleSelect(policy)"
+    style="cursor: pointer;"
   ></app-policy-preview>
 </mat-list>

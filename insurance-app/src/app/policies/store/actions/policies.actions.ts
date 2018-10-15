@@ -2,20 +2,22 @@ import { Action } from '@ngrx/store';
 import { Policy } from '../../models/policy';
 
 export enum PoliciesActionTypes {
-  AddPolicy = '[Policies] AddPolicy',
-  AddPolicySuccess = '[Policies] AddPolicySuccess',
-  AddPolicyFail = '[Policies] AddPolicyFail',
-  UpdatePolicy = '[Policies] UpdatePolicy',
-  UpdatePolicySuccess = '[Policies] UpdatePolicySuccess',
-  UpdatePolicyFail = '[Policies] UpdatePolicyFail',
-  RemovePolicy = '[Policies] RemovePolicy',
-  RemovePolicySuccess = '[Policies] RemovePolicySuccess',
-  RemovePolicyFail = '[Policies] RemovePolicyFail',
-  LoadPolicies = '[Policies] LoadPolicies',
-  LoadPoliciesSuccess = '[Policies] LoadPoliciesSuccess',
-  LoadPoliciesFail = '[Policies] LoadPoliciesFail',
-  // TODO: load all
-  SetCurrentPolicyID = '[Policies] SetCurrentPolicyID',
+  AddPolicy = '[Policy List Page] AddPolicy',
+  AddPolicySuccess = '[Policies API Service] AddPolicySuccess',
+  AddPolicyFail = '[Policies API Service] AddPolicyFail',
+  UpdatePolicy = '[Policy New Page] UpdatePolicy',
+  UpdatePolicySuccess = '[Policies API Service] UpdatePolicySuccess',
+  UpdatePolicyFail = '[Policies API Service] UpdatePolicyFail',
+  RemovePolicy = '[Policy View Page] RemovePolicy',
+  RemovePolicySuccess = '[Policies API Service] RemovePolicySuccess',
+  RemovePolicyFail = '[Policies API Service] RemovePolicyFail',
+  LoadAllPolicies = '[Policy List Page] LoadAllPolicies',
+  LoadAllPoliciesSuccess = '[Policies API Service] LoadAllPoliciesSuccess',
+  LoadAllPoliciesFail = '[Policies API Service] LoadAllPoliciesFail',
+  LoadPolicy = '[Policy Detail Page] LoadPolicy',
+  LoadPolicySuccess = '[Policies API Service] LoadPolicySuccess',
+  LoadPolicyFail = '[Policies API Service] LoadPolicyFail',
+  SetCurrentPolicyID = '[Policy List Page] SetCurrentPolicyID',
 }
 
 export class AddPolicy implements Action {
@@ -54,16 +56,27 @@ export class RemovePolicyFail implements Action {
   readonly type = PoliciesActionTypes.RemovePolicyFail;
   constructor(public payload: Policy) {}
 }
-export class LoadPolicies implements Action {
-  readonly type = PoliciesActionTypes.LoadPolicies;
+export class LoadAllPolicies implements Action {
+  readonly type = PoliciesActionTypes.LoadAllPolicies;
 }
-export class LoadPoliciesSuccess implements Action {
-  readonly type = PoliciesActionTypes.LoadPoliciesSuccess;
+export class LoadAllPoliciesSuccess implements Action {
+  readonly type = PoliciesActionTypes.LoadAllPoliciesSuccess;
   constructor(public payload: Policy[]) {}
 }
-export class LoadPoliciesFail implements Action {
-  readonly type = PoliciesActionTypes.LoadPoliciesFail;
+export class LoadAllPoliciesFail implements Action {
+  readonly type = PoliciesActionTypes.LoadAllPoliciesFail;
   constructor(public payload: Policy) {}
+}
+export class LoadPolicy implements Action {
+  readonly type = PoliciesActionTypes.LoadPolicy;
+  constructor(public payload: string) {}
+}
+export class LoadPolicySuccess implements Action {
+  readonly type = PoliciesActionTypes.LoadPolicySuccess;
+  constructor(public payload: string) {}
+}
+export class LoadPolicyFail implements Action {
+  readonly type = PoliciesActionTypes.LoadPolicyFail;
 }
 export class SetCurrentPolicyID implements Action {
   readonly type = PoliciesActionTypes.SetCurrentPolicyID;
@@ -80,7 +93,10 @@ export type PoliciesActions =
   | RemovePolicy
   | RemovePolicySuccess
   | RemovePolicyFail
-  | LoadPolicies
-  | LoadPoliciesSuccess
-  | LoadPoliciesFail
+  | LoadAllPolicies
+  | LoadAllPoliciesSuccess
+  | LoadAllPoliciesFail
+  | LoadPolicy
+  | LoadPolicySuccess
+  | LoadPolicyFail
   | SetCurrentPolicyID;
